@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body style="background: bisque">
+        <center>
+        <f:view>
+
+            
+            <h:form>
+                <h1><h:outputText value="Agregar Palabra" style="font-family: 'Times New Roman'; color: darkgreen; font-size: 25px"/></h1>
+                <h:panelGrid columns="2">
+                    
+                    <h:outputLabel value="Palabra:" for="palabra" style='font-size: 20px;color:blueviolet;margin-left: 10px; margin-top: 20px'/>
+                    <h:inputText id="palabra" value="#{ahorcado.palabras.palabra}" title="Palabra" style='font-size: 20px;color:blueviolet;margin-left: 10px; margin-top: 20px'/>
+                    <h:outputLabel value="Nivel:" for="nivel" style='font-size: 20px;color:blueviolet;margin-left: 10px; margin-top: 20px'/>
+                    <h:inputText id="nivel" value="#{ahorcado.palabras.nivel}" title="Nivel" style='font-size: 20px;color:blueviolet;margin-left: 10px; margin-top: 20px'/>
+                    <h:outputLabel value="Tipo:" for="tipo" style='font-size: 20px;color:blueviolet;margin-left: 10px; margin-top: 20px'/>
+                    <h:selectOneMenu id="tipo" value="#{ahorcado.tipos.idtipos}" title="Tipo" style='font-size: 20px;color:blueviolet;margin-left: 10px; margin-top: 20px'>
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItems value="#{ahorcado.lista_t}" var="vtipo" itemLabel="#{vtipo.descripcion}" itemValue="#{vtipo.idtipos}"/>
+                    </h:selectOneMenu>
+                    
+                </h:panelGrid>
+                <h:commandButton value="Guardar" actionListener="#{ahorcado.guarda_p}" style="background-color: #f44336; 
+                             border: none; 
+                             color: white;
+                             padding: 10px 27px;
+                             text-align: center;
+                             text-decoration: none;
+                             display: inline-block;
+                             font-size: 16px; margin-top: 30px; margin-left: 10px"/>
+            </h:form>
+        </f:view>
+        <f:view>
+
+
+            <h:form>
+                <h1><h:outputText value="Lista de palabras"/></h1>
+                <h:dataTable value="#{ahorcado.lista_p}" var="item" style="font-family: Arial, Helvetica, sans-serif;
+                                        width: 70%;border: 1px solid; background: skyblue">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Idpalabra"/>
+                        </f:facet>
+                        <h:outputText value="#{item.idpalabra}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Palabra"/>
+                        </f:facet>
+                        <h:outputText value="#{item.palabra}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nivel"/>
+                        </f:facet>
+                        <h:outputText value="#{item.nivel}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Tipo"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tipo.descripcion}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </f:view>
+
+</center>
+    </h:body>
+</html>
+

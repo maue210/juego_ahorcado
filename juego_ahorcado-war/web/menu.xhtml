@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body style="background: bisque">
+        <h:form>
+            <center>
+            <h:panelGrid columns="2">
+                <h:outputLabel style="font-family: 'Times New Roman'; color: darkgreen; font-size: 25px"> Jugador: #{ahorcado.user} </h:outputLabel>
+                    <br/>
+            <h1><h:outputText value="Seleccionar Palabra" style="font-family: 'Times New Roman'; color: darkgreen; font-size: 20px"/></h1>
+                
+                   <h:outputLabel value="Tipo:" for="tipo" style='font-size: 18px;color:blueviolet;margin-left: 10px; margin-top: 10px'/>
+                   <h:selectOneMenu id="tipo" value="#{ahorcado.tipos.idtipos}" title="Tipo" style='font-size: 18px;color:blueviolet;margin-left: 10px; margin-top: 10px'>
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItem itemValue="#{null}" itemLabel="Elegir..." noSelectionOption="true"/>
+                        <f:selectItems value="#{ahorcado.lista_t}" var="vtipo" itemLabel="#{vtipo.descripcion}" itemValue="#{vtipo.idtipos}"/>
+                        <f:ajax event="change" execute="@form" listener="#{ahorcado.obtenerPalabra}" render="nivel" />
+                    </h:selectOneMenu> 
+                   <h:outputLabel value="Nivel:" for="nivel" style='font-size: 18px;color:blueviolet;margin-left: 10px; margin-top: 10px'/>
+                   <h:selectOneMenu id="nivel" value="#{ahorcado.palabras.nivel}" title="Nivel"  style='font-size: 18px;color:blueviolet;margin-left: 10px; margin-top: 10px'>
+                        <!-- TODO: update below reference to list of available items-->
+                        <f:selectItem itemValue="#{null}" itemLabel="Elegir..." noSelectionOption="true"/>
+                        <f:selectItems value="#{ahorcado.niveles}" var="vnivel" itemLabel="#{vnivel}" itemValue="#{vnivel}"/>
+                    </h:selectOneMenu>
+                   <h:outputLabel value="Intentos:" for="intentos" style='font-size: 18px;color:blueviolet;margin-left: 10px; margin-top: 10px'/>
+                   <h:inputText id="intentos" value="#{ahorcado.intentos}" requiredMessage="Escribir intentos" style='font-size: 18px;color:blueviolet;margin-left: 10px; margin-top: 10px'></h:inputText>
+                </h:panelGrid>
+            <h:commandButton value="Jugar"  actionListener="#{ahorcado.azar}" action="juego.xhtml" style="background-color: #f44336; 
+                             border: none; 
+                             color: white;
+                             padding: 10px 27px;
+                             text-align: center;
+                             text-decoration: none;
+                             display: inline-block;
+                             font-size: 16px; margin-top: 30px; margin-left: 10px"/>
+            
+            </center>
+        </h:form>
+        
+    </h:body>
+</html>

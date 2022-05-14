@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body style="background: bisque">
+        <center>
+        <f:view>
+
+
+            <h:form style="color: darkgreen">
+                <h1><h:outputText value="Lista de Ganadores"/></h1>
+                <h:dataTable value="#{ahorcado.lista_ju()}" var="item" style="font-family: Arial, Helvetica, sans-serif;
+                                        
+                                        width: 70%;border: 1px solid; background: skyblue">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Jugador" style='color: blueviolet'/>
+                        </f:facet>
+                        <h:outputText value="#{item.idusuario.nombre}" style='color: brown'/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Fecha" style='color: blueviolet'/>
+                        </f:facet>
+                        <h:outputText value="#{item.fechaHora}" style='color: brown;'>
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Porcentaje de efectividad" style='color: blueviolet'/>
+                        </f:facet>
+                        <h:outputText value="#{100-(item.intentost-item.intentosr)/item.intentost*100}" style='color: brown'/>
+                    </h:column>
+                   
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Palabra" style='color: blueviolet'/>
+                        </f:facet>
+                        <h:outputText value="#{item.palabra.palabra}" style='color: brown'/>
+                    </h:column>
+                    
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Nivel" style='color: blueviolet'/>
+                        </f:facet>
+                        <h:outputText value="#{ahorcado.ncomp(item.palabra.nivel)}" style='color: brown'/>
+                    </h:column>
+                   
+                    
+                </h:dataTable>
+            </h:form>
+        </f:view>
+</center>
+    </h:body>
+</html>
+
